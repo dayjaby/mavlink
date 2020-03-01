@@ -4230,7 +4230,7 @@
       <field type="int16_t" name="ymag" units="mgauss">Y Magnetic field</field>
       <field type="int16_t" name="zmag" units="mgauss">Z Magnetic field</field>
       <extensions/>
-      <field type="int16_t" name="temperature" units="cdegC">Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).</field>
+      <field type="int16_t" name="temperature" units="cdegC">Temperature, INT16_MAX for unknown temperature.</field>
     </message>
     <message id="27" name="RAW_IMU">
       <description>The RAW IMU readings for a 9DOF sensor, which is identified by the id (default IMU1). This message should always contain the true raw values without any scaling to allow data capture and system debugging.</description>
@@ -4246,7 +4246,7 @@
       <field type="int16_t" name="zmag">Z Magnetic field (raw)</field>
       <extensions/>
       <field type="uint8_t" name="id">Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)</field>
-      <field type="int16_t" name="temperature" units="cdegC">Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).</field>
+      <field type="int16_t" name="temperature" units="cdegC">Temperature, INT16_MAX for unknown temperature.</field>
     </message>
     <message id="28" name="RAW_PRESSURE">
       <description>The RAW pressure readings for the typical setup of one absolute pressure and one differential pressure sensor. The sensor values should be the raw, UNSCALED ADC values.</description>
@@ -4261,7 +4261,7 @@
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
       <field type="float" name="press_abs" units="hPa">Absolute pressure</field>
       <field type="float" name="press_diff" units="hPa">Differential pressure 1</field>
-      <field type="int16_t" name="temperature" units="cdegC">Temperature</field>
+      <field type="int16_t" name="temperature" units="cdegC">Temperature, INT16_MAX for unknown temperature.</field>
     </message>
     <message id="30" name="ATTITUDE">
       <description>The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right).</description>
@@ -4957,7 +4957,7 @@
       <field type="float" name="abs_pressure" units="mbar">Absolute pressure</field>
       <field type="float" name="diff_pressure" units="mbar">Differential pressure</field>
       <field type="float" name="pressure_alt">Altitude calculated from pressure</field>
-      <field type="float" name="temperature" units="degC">Temperature</field>
+      <field type="float" name="temperature" units="degC">Temperature, NaN for unknown temperature.</field>
       <field type="uint16_t" name="fields_updated" display="bitmask">Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature</field>
       <extensions/>
       <field type="uint8_t" name="id">Id. Ids are numbered from 0 and map to IMUs numbered from 1 (e.g. IMU1 will have a message with id=0)</field>
@@ -4972,7 +4972,7 @@
       <field type="float" name="integrated_xgyro" units="rad">RH rotation around X axis</field>
       <field type="float" name="integrated_ygyro" units="rad">RH rotation around Y axis</field>
       <field type="float" name="integrated_zgyro" units="rad">RH rotation around Z axis</field>
-      <field type="int16_t" name="temperature" units="cdegC">Temperature</field>
+      <field type="int16_t" name="temperature" units="cdegC">Temperature, INT16_MAX for unknown temperature.</field>
       <field type="uint8_t" name="quality">Optical flow quality / confidence. 0: no valid flow, 255: maximum quality</field>
       <field type="uint32_t" name="time_delta_distance_us" units="us">Time since the distance was sampled.</field>
       <field type="float" name="distance" units="m">Distance to the center of the flow field. Positive value (including zero): distance known. Negative value: Unknown distance.</field>
@@ -4992,7 +4992,7 @@
       <field type="float" name="abs_pressure" units="mbar">Absolute pressure</field>
       <field type="float" name="diff_pressure" units="mbar">Differential pressure (airspeed)</field>
       <field type="float" name="pressure_alt">Altitude calculated from pressure</field>
-      <field type="float" name="temperature" units="degC">Temperature</field>
+      <field type="float" name="temperature" units="degC">Temperature, NaN for unknown temperature.</field>
       <field type="uint32_t" name="fields_updated" display="bitmask">Bitmap for fields that have updated since last message, bit 0 = xacc, bit 12: temperature, bit 31: full reset of attitude/position/velocities/etc was performed in sim.</field>
     </message>
     <message id="108" name="SIM_STATE">
@@ -5073,7 +5073,7 @@
       <field type="float" name="integrated_xgyro" units="rad">RH rotation around X axis</field>
       <field type="float" name="integrated_ygyro" units="rad">RH rotation around Y axis</field>
       <field type="float" name="integrated_zgyro" units="rad">RH rotation around Z axis</field>
-      <field type="int16_t" name="temperature" units="cdegC">Temperature</field>
+      <field type="int16_t" name="temperature" units="cdegC">Temperature, INT16_MAX for unknown temperature.</field>
       <field type="uint8_t" name="quality">Optical flow quality / confidence. 0: no valid flow, 255: maximum quality</field>
       <field type="uint32_t" name="time_delta_distance_us" units="us">Time since the distance was sampled.</field>
       <field type="float" name="distance" units="m">Distance to the center of the flow field. Positive value (including zero): distance known. Negative value: Unknown distance.</field>
@@ -5110,7 +5110,7 @@
       <field type="int16_t" name="ymag" units="mgauss">Y Magnetic field</field>
       <field type="int16_t" name="zmag" units="mgauss">Z Magnetic field</field>
       <extensions/>
-      <field type="int16_t" name="temperature" units="cdegC">Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).</field>
+      <field type="int16_t" name="temperature" units="cdegC">Temperature measurement, INT16_MAX for unknown temperature.</field>
     </message>
     <message id="117" name="LOG_REQUEST_LIST">
       <description>Request a list of available logs. On some systems calling this may stop on-board logging until LOG_REQUEST_END is called.</description>
@@ -5236,7 +5236,7 @@
       <field type="int16_t" name="ymag" units="mgauss">Y Magnetic field</field>
       <field type="int16_t" name="zmag" units="mgauss">Z Magnetic field</field>
       <extensions/>
-      <field type="int16_t" name="temperature" units="cdegC">Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).</field>
+      <field type="int16_t" name="temperature" units="cdegC">Temperature measurement, INT16_MAX for unknown temperature.</field>
     </message>
     <message id="130" name="DATA_TRANSMISSION_HANDSHAKE">
       <description>Handshake message to initiate, control and stop image streaming when using the Image Transmission Protocol: https://mavlink.io/en/services/image_transmission.html.</description>
@@ -5303,7 +5303,7 @@
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
       <field type="float" name="press_abs" units="hPa">Absolute pressure</field>
       <field type="float" name="press_diff" units="hPa">Differential pressure</field>
-      <field type="int16_t" name="temperature" units="cdegC">Temperature measurement</field>
+      <field type="int16_t" name="temperature" units="cdegC">Temperature measurement, INT16_MAX for unknown temperature.</field>
     </message>
     <message id="138" name="ATT_POS_MOCAP">
       <description>Motion capture attitude and position</description>
@@ -5352,7 +5352,7 @@
       <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
       <field type="float" name="press_abs" units="hPa">Absolute pressure</field>
       <field type="float" name="press_diff" units="hPa">Differential pressure</field>
-      <field type="int16_t" name="temperature" units="cdegC">Temperature measurement</field>
+      <field type="int16_t" name="temperature" units="cdegC">Temperature measurement, INT16_MAX for unknown temperature.</field>
     </message>
     <message id="144" name="FOLLOW_TARGET">
       <description>Current motion information from a designated system</description>
@@ -5523,8 +5523,8 @@
       <field type="uint8_t" name="gps_nsat">Number of satellites visible. If unknown, set to 255</field>
       <field type="uint8_t" name="gps_fix_type" enum="GPS_FIX_TYPE">GPS Fix type.</field>
       <field type="uint8_t" name="battery_remaining" units="%">Remaining battery (percentage)</field>
-      <field type="int8_t" name="temperature" units="degC">Autopilot temperature (degrees C)</field>
-      <field type="int8_t" name="temperature_air" units="degC">Air temperature (degrees C) from airspeed sensor</field>
+      <field type="int8_t" name="temperature" units="degC">Autopilot temperature (degrees C), INT8_MAX for unknown temperature.</field>
+      <field type="int8_t" name="temperature_air" units="degC">Air temperature (degrees C) from airspeed sensor, INT8_MAX for unknown temperature.</field>
       <field type="uint8_t" name="failsafe">failsafe (each bit represents a failsafe where 0=ok, 1=failsafe active (bit0:RC, bit1:batt, bit2:GPS, bit3:GCS, bit4:fence)</field>
       <field type="uint8_t" name="wp_num">current waypoint number</field>
       <field type="uint16_t" name="wp_distance" units="m">distance to target</field>
@@ -5552,7 +5552,7 @@
       <field type="uint8_t" name="wind_heading" units="deg/2">Wind heading</field>
       <field type="uint8_t" name="eph" units="dm">Maximum error horizontal position since last message</field>
       <field type="uint8_t" name="epv" units="dm">Maximum error vertical position since last message</field>
-      <field type="int8_t" name="temperature_air" units="degC">Air temperature from airspeed sensor</field>
+      <field type="int8_t" name="temperature_air" units="degC">Air temperature from airspeed sensor, INT8_MAX for unknown temperature.</field>
       <field type="int8_t" name="climb_rate" units="dm/s">Maximum climb rate magnitude since last message</field>
       <field type="int8_t" name="battery" units="%">Battery level (-1 if field not provided).</field>
       <field type="uint16_t" name="wp_num">Current waypoint number</field>
@@ -6087,7 +6087,7 @@
       <field type="uint16_t" name="id">Battery ID</field>
       <field type="int16_t" name="capacity_remaining" units="%">Remaining battery energy. Values: [0-100], -1: field not provided.</field>
       <field type="int16_t" name="current" units="cA">Battery current (through all cells/loads). Positive if discharging, negative if charging. UINT16_MAX: field not provided.</field>
-      <field type="int16_t" name="temperature" units="cdegC">Battery temperature. -1: field not provided.</field>
+      <field type="int16_t" name="temperature" units="cdegC">Battery temperature, INT16_MAX for unknown temperature.</field>
       <field type="int32_t" name="fault_bitmask" display="bitmask" enum="MAV_SMART_BATTERY_FAULT">Fault/health indications.</field>
       <field type="int32_t" name="time_remaining" units="s">Estimated remaining battery time. -1: field not provided.</field>
       <field type="uint16_t" default="0" name="cell_offset">The cell number of the first index in the 'voltages' array field. Using this field allows you to specify cell voltages for batteries with more than 16 cells.</field>
